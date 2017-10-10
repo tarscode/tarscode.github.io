@@ -1,0 +1,1056 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TarsCode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="书名：《Java并发编程的艺术》作者：方腾飞">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Java并发编程的艺术》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2017/05/25/Java并发编程的艺术/index.html">
+<meta property="og:site_name" content="TarsCode">
+<meta property="og:description" content="书名：《Java并发编程的艺术》作者：方腾飞">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006tKfTcly1fevadxt4i9j30jo05rgo1.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1febtebpvtpj30br0ahmx7.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1febu5csumhj30j9080q67.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe8fp160uxj30uc06vdi5.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNbRwly1fe8ccf70gdj316o1kw17z.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe8bciyb8zj30ui0ceq7d.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe8dnir788j316o1kwqcc.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNbRwly1fe87d1e35lj310x0fmwhx.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe8dl626tkj316o1kwags.jpg">
+<meta property="og:updated_time" content="2017-05-25T11:18:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Java并发编程的艺术》读书笔记">
+<meta name="twitter:description" content="书名：《Java并发编程的艺术》作者：方腾飞">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006tKfTcly1fevadxt4i9j30jo05rgo1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 《Java并发编程的艺术》读书笔记 | TarsCode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8e0099505ddf5626c155c62af53a2c72";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TarsCode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Make life simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《Java并发编程的艺术》读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-25T19:13:43+08:00" content="2017-05-25">
+              2017-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/25/Java并发编程的艺术/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/25/Java并发编程的艺术/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>书名：《Java并发编程的艺术》<br>作者：方腾飞</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="并发编程的挑战"><a href="#并发编程的挑战" class="headerlink" title="并发编程的挑战"></a>并发编程的挑战</h2><p>减少上下文切换的方法</p>
+<ul>
+<li>无锁并发编程：例如将数据的ID按照Hash算法分段取模</li>
+<li>CAS算法：Java的Atomic包使用CAS算法更新数据，而不需要加锁</li>
+<li>使用最少的线程：避免创建不需要的线程</li>
+<li>协程：在单线程里实现多任务的切换，并在单线程里维持多个任务间的切换</li>
+</ul>
+<p>避免死锁的几个常见方法</p>
+<ul>
+<li>避免一个线程同时获取多个锁</li>
+<li>避免一个线程在锁内同时占用多个资源，尽量保证每个锁只占用一个资源</li>
+<li>避免使用定时锁，使用lock.tryLock(timeout)来替代使用内部锁机制</li>
+<li>对于数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现解锁失败的情况</li>
+</ul>
+<h2 id="Java并发机制的底层实现原理"><a href="#Java并发机制的底层实现原理" class="headerlink" title="Java并发机制的底层实现原理"></a>Java并发机制的底层实现原理</h2><p>锁一共分为四种状态：级别从低到高依次是：无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态，这几个状态会随着竞争情况逐渐升级。锁可以升级但不能降级。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tKfTcly1fevadxt4i9j30jo05rgo1.jpg" alt="锁的优缺点对比"></p>
+<h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><h3 id="Java内存模型基础"><a href="#Java内存模型基础" class="headerlink" title="Java内存模型基础"></a>Java内存模型基础</h3><h4 id="Java内存模型的抽象结构"><a href="#Java内存模型的抽象结构" class="headerlink" title="Java内存模型的抽象结构"></a>Java内存模型的抽象结构</h4><p>Java内存模型的主要目标是定义程序中各个变量的访问规则，即在虚拟机中将变量存储到内存和从内存中取出变量这样的底层细节。此处的变量与Java编程时所说的变量不一样，指包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法参数，后者是线程私有的，不会被共享。</p>
+<p>Java内存模型规定了<strong>所有的变量都存储在主内存中，每条线程还有自己的工作内存</strong>线程的工作内存保存了该线程使用到的变量到主内存副本拷贝，<strong>线程对变量的所有操作(读取、赋值)都必须在工作内存进行，而不能直接读写主内存中的变量</strong>。不同线程之间无法直接访问对方工作内存中的变量，线程变量值的传递均需要在主内存来完成。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1febtebpvtpj30br0ahmx7.jpg" alt="Java内存模型的抽象结构示意图"></p>
+<p>如上图所示，如果线程A与线程B之间要通信的话，必须要经历下面2个步骤：</p>
+<ol>
+<li>线程A把本地内存A中更新过的共享变量刷新到主内存中去</li>
+<li>线程B到主内存中去读取线程A之前更新过的共享变量</li>
+</ol>
+<h4 id="从源代码到指令序列的重排序"><a href="#从源代码到指令序列的重排序" class="headerlink" title="从源代码到指令序列的重排序"></a>从源代码到指令序列的重排序</h4><p>在执行程序时，为了提高性能，编译器和处理器常常会对指令做重排序。重排序分3种类型。</p>
+<ul>
+<li>编译器优化的重排序</li>
+<li>指令级并行的重排序</li>
+<li>内存系统的冲排序</li>
+</ul>
+<h4 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h4><p>为了保证内存可见性，Java编译器在生成指令序列的适当位置会插入内存屏障指令来进制特定类型的处理器重排序，JMM吧内存屏障指令分为4类，</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79ly1febu5csumhj30j9080q67.jpg" alt=""></p>
+<h4 id="happens-before简介"><a href="#happens-before简介" class="headerlink" title="happens-before简介"></a>happens-before简介</h4><p>在JMM中，如果一个操作执行的结果需要对另外一个操作可见，那么这两个操作之间必须要存在happens-before关系。</p>
+<p>与程序员密切相关的happens-before规则如下：</p>
+<ul>
+<li>程序顺序规则：一个线程中的每个操作，happens-before于该线程中的任意后序操作</li>
+<li>监视器规则：对一个锁的解锁，happens-before于随后对这个锁的加锁</li>
+<li>volatile变量规则：对一个volatile域的写，happens-before于任意后续对这个volatile域的读</li>
+<li>传递性：如果A happens-before B,且B happens-before C，那么A happens-before C</li>
+</ul>
+<h2 id="Java中的锁"><a href="#Java中的锁" class="headerlink" title="Java中的锁"></a>Java中的锁</h2><p>Lock接口提供的synchronized关键所不具备的主要特性</p>
+<ul>
+<li>尝试非阻塞地获取锁：当前线程尝试获取锁，如果这一时刻锁没有被其他线程获取到，则成功获取并持有锁</li>
+<li>能中断地获取锁：与synchronized不同，获取锁的线程能够响应中断，当获取到锁的线程被中断时，中断异常将会被抛出，同时锁会被释放</li>
+<li>超时获取锁：在指定的截止时间之前获取锁，如果截止时间到了仍旧无法获取锁，则返回</li>
+</ul>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe8fp160uxj30uc06vdi5.jpg" alt="Java中的锁"></p>
+<h2 id="Java并发容器和框架"><a href="#Java并发容器和框架" class="headerlink" title="Java并发容器和框架"></a>Java并发容器和框架</h2><h3 id="ConcurrentHashMap的实现原理和使用"><a href="#ConcurrentHashMap的实现原理和使用" class="headerlink" title="ConcurrentHashMap的实现原理和使用"></a>ConcurrentHashMap的实现原理和使用</h3><p>ConcurrentHashMap采用锁分段技术，首先将数据分成一段一段地存储，然后给每一部分数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<p>ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segment是一种可重入锁(ReentrantLock),在ConcurrentHashMap中扮演锁的角色；HashEntry则用于存储键值对数据。一个ConcurrentHashMap里包含一个Segment数组。Segment的结构和HashMap类似，是一种数组和链表结构。一个Segment里面包含一个HashEntry数组，每个HashEntry是一个链表结构结构的元素，每个Segment守护者一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时必须首先获得与它队形的Segment锁。</p>
+<p>定位Segment，采用Wang/Jenkins hash的变种算法对元素的hashcode进行一次再散列。</p>
+<h4 id="ConcurrentHashMap的操作"><a href="#ConcurrentHashMap的操作" class="headerlink" title="ConcurrentHashMap的操作"></a>ConcurrentHashMap的操作</h4><p><strong>get</strong>操作</p>
+<p>get操作的高效之处在于整个get过程不需要加锁，除非读到的值为空时才会加锁重读。原理是将get方法里面的使用的共享变量都定义成volatile类型，如用于统计当前Segment大小的count字段和用于存储值的HashEntry的value。</p>
+<h3 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h3><h3 id="Java里的阻塞队列"><a href="#Java里的阻塞队列" class="headerlink" title="Java里的阻塞队列"></a>Java里的阻塞队列</h3><ul>
+<li>ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列</li>
+<li>LinkedBlockingQueue：一个由链表结构组成的有界阻塞队列</li>
+<li>PriorityBlockingQueue：一个支持优先级排序的无界阻塞队列</li>
+<li>DelayQueue：一个使用优先级队列实现的无界阻塞队列</li>
+<li>SynchronousQueue：一个不存储元素的阻塞队列</li>
+<li>LinkedTransferQueue：一个由链表结构组成的无界阻塞队列</li>
+<li>LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列</li>
+</ul>
+<p><img src="https://ww4.sinaimg.cn/large/006tNbRwly1fe8ccf70gdj316o1kw17z.jpg" alt=""></p>
+<h2 id="Java中的并发工具类"><a href="#Java中的并发工具类" class="headerlink" title="Java中的并发工具类"></a>Java中的并发工具类</h2><p><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe8bciyb8zj30ui0ceq7d.jpg" alt=""></p>
+<h2 id="Java中的线程池"><a href="#Java中的线程池" class="headerlink" title="Java中的线程池"></a>Java中的线程池</h2><p>Java中的线程池是运用场景最多的并发框架，几乎所有需要异步或并发执行任务的程序都可以使用线程池。开发过程中使用线程池能够带来3个好处：</p>
+<ul>
+<li><strong>提高资源消耗</strong>。通过重复利用已经创建的线程减低线程创建和销毁造成的消耗</li>
+<li><strong>提高响应速度</strong>。当任务到达时，任务可以不需要等待线程创建就能立即执行</li>
+<li><strong>提高线程的可管理性</strong>。线程是稀缺资源，如果无限制的串讲，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。</li>
+</ul>
+<h3 id="线程池的实现原理"><a href="#线程池的实现原理" class="headerlink" title="线程池的实现原理"></a>线程池的实现原理</h3><p>当向线程池提交一个任务后，线程池是如何处理这个任务的呢？如图所示。</p>
+<p>处理流程；</p>
+<p>核心线程池-&gt;工作队列-&gt;线程池-&gt;饱和策略处理</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe8dnir788j316o1kwqcc.jpg" alt="线程池的处理流程"></p>
+<p>ThreadPoolExecutor执行executor()方法的示意图如上图所示，分为下列4种情况：</p>
+<ol>
+<li>如果当前运行的线程少于corePoolSize,则创建新线程来执行任务(注意，执行这一步骤需要获取全局锁)</li>
+<li>如果运行的线程等于或者多余corePoolSize,则将任务加入BlockingQueue。</li>
+<li>如果无法将任务加入BlockingQueue(队列已满)，则创建新的线程来处理任务(注意，执行这一步骤需要获取全局锁)。</li>
+<li>如果创建新线程将使当前运行的线程超出maximumPoolSize,任务将被拒绝，并调用RejectedExecuteHandler.rejectExecution()方法。</li>
+</ol>
+<p>ThreadPoolExecutor采用上述步骤的总体设计思路，是为了在执行execute()方法时，尽可能地避免全局锁(那将会是一个严重的可伸缩瓶颈)。在ThreadPoolExecutor完成预热之后(当前运行的线程数目大于等于corePoolSize),几乎所有的excute()方法调用都是执行步骤2，而步骤2不需要获取全局锁。</p>
+<h3 id="线程池的使用"><a href="#线程池的使用" class="headerlink" title="线程池的使用"></a>线程池的使用</h3><h4 id="线程池的创建"><a href="#线程池的创建" class="headerlink" title="线程池的创建"></a>线程池的创建</h4><p>通过ThreadPoolExecutor创建一个线程池</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, milliseconds, runnableTaskQueue, <span class="keyword">handler</span>);</div></pre></td></tr></table></figure>
+<p><strong>runnableTaskQueue(任务队列)</strong>：用于保存等待执行的任务的阻塞队列，有4种：</p>
+<ul>
+<li>ArrayBlockingQueue:是一个基于数组结构的有界队列，按FIFO对元素进行排序</li>
+<li>LinkedBlockingQueue:是一个基于链表结构的阻塞队列，按FIFO对元素进行排序，吞吐量高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool()使用了这个队列</li>
+<li>SynchronousQueue:是一个不才能出元素的阻塞队列，每个插入操作必须等到另一个线程调用溢出操作，否则插入操作一直处于阻塞状态，吞吐量通常高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool使用了这个队列</li>
+<li>PriorityBlockingQueue:一个具有优先级的无限阻塞队列</li>
+</ul>
+<p><strong>RejectedExecutionHandler(饱和策略)</strong>:当队列和线程池都满了,说明线程池处于饱和状态,那么必须采取一种策略处理提交的新任务。这个策略默认是AbortPolicy，表示无法处理时抛出异常。共包括4种策略：</p>
+<ul>
+<li>AbortPolicy:直接抛出异常</li>
+<li>CallerRunsPolicy:只用调用者所在线程来运行任务</li>
+<li>DiscardOldestPolicy:丢弃队列里最近的一个任务，并执行当前任务</li>
+<li>DiscardPolicy:不处理丢弃掉</li>
+</ul>
+<h4 id="向线程池提交任务"><a href="#向线程池提交任务" class="headerlink" title="向线程池提交任务"></a>向线程池提交任务</h4><p>可以使用两种方法向线程池提交任务：</p>
+<ul>
+<li>execute():用于提交不需要返回值的任务</li>
+<li>submit():用于提交需要返回值的任务</li>
+</ul>
+<h4 id="关闭线程池"><a href="#关闭线程池" class="headerlink" title="关闭线程池"></a>关闭线程池</h4><p>可以调用线程池的shutdown或shutdownNow方法来关闭线程池。原理是遍历线程池中的工作线程，然后逐个调用线程的interrupt方法来中断线程，所以无法响应中断的任务可能永远无法终止。但是二者有一定的区别：</p>
+<ul>
+<li>shutdownNow首先将线程池的状态设置成STOP,然后尝试停止所有的正在执行或者暂停任务的线程，并返回等待执行任务的列表</li>
+<li>shutdown只是将线程池的状态设置成SHUTDOWN状态，然后中断所有没有正在执行任务的线程</li>
+</ul>
+<h4 id="合理地配置线程池"><a href="#合理地配置线程池" class="headerlink" title="合理地配置线程池"></a>合理地配置线程池</h4><p>任务的性质：CPU密集型任务、IO密集型任务和混合型任务</p>
+<p>任务的优先级：高、中和低</p>
+<p>任务的执行时间：长、中和短</p>
+<p>任务的依赖性：是否依赖其他系统资源，如数据库连接</p>
+<p>例子：</p>
+<p>CPU密集型任务应该配置尽可能小的线程，如配置Ncpu+1个线程的线程池</p>
+<p>IO密集型任务线程并不是一直在执行任务，则应配置尽可能多的线程，如2*Ncpu混合型的任务，如果可以拆分，将其拆分成一个CPU密集型任务和一个IO密集型任务。可以通过Runtime.getRuntime().availableProceesors()方法获得当前设备的CPU个数</p>
+<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理，它可以让优先级高的任务先执行</p>
+<h2 id="Executor框架"><a href="#Executor框架" class="headerlink" title="Executor框架"></a>Executor框架</h2><p>在Java中使用线程来异步执行任务，Java的线程既是工作单元，也是执行机制。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNbRwly1fe87d1e35lj310x0fmwhx.jpg" alt=""></p>
+<h3 id="Executor框架简介"><a href="#Executor框架简介" class="headerlink" title="Executor框架简介"></a>Executor框架简介</h3><p>Executor框架主要由3大部分组成：</p>
+<ul>
+<li>任务。包括被执行任务需要执行的接口：Runnable和Callable</li>
+<li>任务的执行。包括任务执行机制的核心接口Executor,以及集成子Executor的ExecutorService接口。Executor框架有两个关键类实现了ExecutorService接口(ThreadPoolExecutor和ScheduledThreadPoolExecutor)</li>
+<li>异步计算的结果。包括接口Future和实现Future接口和FutureTask类。</li>
+</ul>
+<p><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe8dl626tkj316o1kwags.jpg" alt=""></p>
+<p>Executor框架的主要成员：</p>
+<ul>
+<li>ThreadPoolExecutor</li>
+<li>ScheduledThreadPoolExecutor</li>
+<li>Future接口</li>
+<li>Runnable接口</li>
+<li>Callable接口</li>
+<li>Executors</li>
+</ul>
+<p><strong>(1) ThreadPoolExecutor</strong></p>
+<p>ThreadPoolExecutor通常通过工厂类Executors来创建,Executors可以创建3种类型的ThreadPoolExecutor：</p>
+<ul>
+<li>SingleThreadExecutor:单个线程，适用于需要保证顺序地执行各个任务;并且在任意时间点，不会有多个线程是活动的场景</li>
+<li>FixedThreadPool:固定线程数目，限制当前线程数量的应用场景，适用负载比较重的服务器</li>
+<li>CacheThreadPool:大小无界的线程池，适用于执行很多短期异步任务的小程序，或者负载较轻的服务器，创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</li>
+</ul>
+<p><strong>(2) ScheduledThreadPoolExecutor</strong></p>
+<p>ScheduledThreadPoolExecutor通常通过工厂类Executors来创建,Executors可以创建2种类型的ScheduledThreadPoolExecutor，如下：</p>
+<ul>
+<li>ScheduledThreadPoolExecutor：包括若干线程，适合需要多个后台线程执行周期任务，同时为了满足资源管理的需求需要限制后台线程的数量的应用场景</li>
+<li>SingleThreadPoolExecutor：只包括一个线程，适合需要单个后台线程执行周期任务，同时需要保证顺序地执行各个任务的应用场景</li>
+</ul>
+<p><strong>(3) Future接口</strong></p>
+<p>Future接口和实现Future接口的FutureTask类用来表示异步计算的结果。当我们把Runnable接口或Callable接口的实现类提交(submit)给ThreadPoolExecutor或ScheduledThreadPoolExecutor时，ThreadPoolExecutor或ScheduledThreadPoolExecutor会向我们返回一个FutureTask对象。</p>
+<p><strong>(4) Runnable接口和Callable接口</strong></p>
+<p>Runnable接口和Callable接口的实现类，都可以被ThreadPoolExecutor或ScheduledThreadPoolExecutor执行。区别是Runnable不会返回结果，而Callable可以返回结果。</p>
+<h3 id="ThreadPoolExecutor详解"><a href="#ThreadPoolExecutor详解" class="headerlink" title="ThreadPoolExecutor详解"></a>ThreadPoolExecutor详解</h3><p>Executor框架最核心的类是ThreadPoolExecutor，它是线程的实现类，主要由4个构件组成：</p>
+<ul>
+<li>corePool：核心线程池的大小</li>
+<li>maximumPool：最大线程池的大小</li>
+<li>BlockingQueue：用来暂时保存任务的工作队列</li>
+<li>RejectedExecutionHandler：当ThreadPoolExecutor已经关闭或者ThreadPoolExecutor已经饱和时(达到了最大线程池大小且工作队列已满)，execute()方法将要调用的Handler</li>
+</ul>
+<h3 id="FutureTask详解"><a href="#FutureTask详解" class="headerlink" title="FutureTask详解"></a>FutureTask详解</h3><p>Future接口和实现Future接口的FutureTask类，代表异步计算的结果</p>
+<p>FutureTask除了实现了Future接口外，还实现了Runnable接口。因此FutureTask可以交给Executor执行，也可以有调用线程直接执行(FutureTask.run())。</p>
+<p><strong>FutureTask的实现</strong></p>
+<p>FutureTask的实现基于AbstractQueueSynchronizer(简称为AQS),java.util。concurrent中的很多可阻塞类都是基于AQS实现的。AQS是一个同步框架,它提供通用机制来原子性管理同步状态、阻塞状态和唤醒线程，以及维护被阻塞线程的队列。基于AQS的同步器包括：ReentrantLock、Semaphore、ReenrantReadWriteLock 、CountDownLatch和FutureTask。</p>
+<p>每一个基于AQS实现的同步器都会包含两种类型的操作，如下：</p>
+<ul>
+<li>至少一个acquire操作，这个操作阻塞调用线程，除非/直到AQS的状态允许这个线程继续执行。FutureTask的acquire操作为get()/get(long timeout,TimeUnit unit)方法调用</li>
+<li>至少一个release操作，这个操作改变AQS的状态，改变后的状态可允许一个或多个阻塞线程被解除阻塞。FutureTask的release操作包括run()方法和和cancel()方法</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Tars wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/23/动态代理详解/" rel="next" title="动态代理详解">
+                <i class="fa fa-chevron-left"></i> 动态代理详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/08/MyBatis逆向工程/" rel="prev" title="MyBatis逆向功能">
+                MyBatis逆向功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/25/Java并发编程的艺术/"
+           data-title="《Java并发编程的艺术》读书笔记" data-url="http://yoursite.com/2017/05/25/Java并发编程的艺术/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tars.png"
+               alt="Tars" />
+          <p class="site-author-name" itemprop="name">Tars</p>
+          <p class="site-description motion-element" itemprop="description">Make life simple</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tarscode" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2171892561" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/liu-yang-heuer" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/16e3390681e6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并发编程的挑战"><span class="nav-number">1.</span> <span class="nav-text">并发编程的挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java并发机制的底层实现原理"><span class="nav-number">2.</span> <span class="nav-text">Java并发机制的底层实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java内存模型"><span class="nav-number">3.</span> <span class="nav-text">Java内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java内存模型基础"><span class="nav-number">3.1.</span> <span class="nav-text">Java内存模型基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java内存模型的抽象结构"><span class="nav-number">3.1.1.</span> <span class="nav-text">Java内存模型的抽象结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从源代码到指令序列的重排序"><span class="nav-number">3.1.2.</span> <span class="nav-text">从源代码到指令序列的重排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存屏障"><span class="nav-number">3.1.3.</span> <span class="nav-text">内存屏障</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#happens-before简介"><span class="nav-number">3.1.4.</span> <span class="nav-text">happens-before简介</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的锁"><span class="nav-number">4.</span> <span class="nav-text">Java中的锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java并发容器和框架"><span class="nav-number">5.</span> <span class="nav-text">Java并发容器和框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap的实现原理和使用"><span class="nav-number">5.1.</span> <span class="nav-text">ConcurrentHashMap的实现原理和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ConcurrentHashMap的操作"><span class="nav-number">5.1.1.</span> <span class="nav-text">ConcurrentHashMap的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentLinkedQueue"><span class="nav-number">5.2.</span> <span class="nav-text">ConcurrentLinkedQueue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java里的阻塞队列"><span class="nav-number">5.3.</span> <span class="nav-text">Java里的阻塞队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的并发工具类"><span class="nav-number">6.</span> <span class="nav-text">Java中的并发工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的线程池"><span class="nav-number">7.</span> <span class="nav-text">Java中的线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池的实现原理"><span class="nav-number">7.1.</span> <span class="nav-text">线程池的实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池的使用"><span class="nav-number">7.2.</span> <span class="nav-text">线程池的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池的创建"><span class="nav-number">7.2.1.</span> <span class="nav-text">线程池的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向线程池提交任务"><span class="nav-number">7.2.2.</span> <span class="nav-text">向线程池提交任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭线程池"><span class="nav-number">7.2.3.</span> <span class="nav-text">关闭线程池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理地配置线程池"><span class="nav-number">7.2.4.</span> <span class="nav-text">合理地配置线程池</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Executor框架"><span class="nav-number">8.</span> <span class="nav-text">Executor框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Executor框架简介"><span class="nav-number">8.1.</span> <span class="nav-text">Executor框架简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadPoolExecutor详解"><span class="nav-number">8.2.</span> <span class="nav-text">ThreadPoolExecutor详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FutureTask详解"><span class="nav-number">8.3.</span> <span class="nav-text">FutureTask详解</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tars</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tarscode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

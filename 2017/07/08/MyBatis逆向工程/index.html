@@ -1,0 +1,888 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MyBatis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TarsCode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="简介MyBatis是一款ORM框架，可以将实体类和数据库中的表进行一一映射，那么也可以支持通过数据库表生成实体类。下面介绍MyBatis和Idea实现MyBatis的逆向工程。">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis逆向功能">
+<meta property="og:url" content="http://yoursite.com/2017/07/08/MyBatis逆向工程/index.html">
+<meta property="og:site_name" content="TarsCode">
+<meta property="og:description" content="简介MyBatis是一款ORM框架，可以将实体类和数据库中的表进行一一映射，那么也可以支持通过数据库表生成实体类。下面介绍MyBatis和Idea实现MyBatis的逆向工程。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fhcjng97wxj30vq06mjsl.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fhcjqgvandj308o042q2z.jpg">
+<meta property="og:updated_time" content="2017-07-08T08:33:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis逆向功能">
+<meta name="twitter:description" content="简介MyBatis是一款ORM框架，可以将实体类和数据库中的表进行一一映射，那么也可以支持通过数据库表生成实体类。下面介绍MyBatis和Idea实现MyBatis的逆向工程。">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fhcjng97wxj30vq06mjsl.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> MyBatis逆向功能 | TarsCode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8e0099505ddf5626c155c62af53a2c72";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TarsCode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Make life simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MyBatis逆向功能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-08T16:31:36+08:00" content="2017-07-08">
+              2017-07-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/08/MyBatis逆向工程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/08/MyBatis逆向工程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MyBatis是一款ORM框架，可以将实体类和数据库中的表进行一一映射，那么也可以支持通过数据库表生成实体类。下面介绍MyBatis和Idea实现MyBatis的逆向工程。</p>
+<a id="more"></a>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>一、创建一个Maven项目，并在pom.xml文件中添加MyBatis Generator插件的配置文件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>mybatis_generator<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.38<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>二、在resource目录下创建yBatis Generator的配置文件generatorConfig.xml（官方的配置<br>说明：<a href="http://mybatis.github.io/generator/configreference/xmlconfig.html）" target="_blank" rel="external">http://mybatis.github.io/generator/configreference/xmlconfig.html）</a></p>
+<figure class="highlight dust"><table><tr><td class="code"><pre><div class="line"><span class="xml"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span></div><div class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE generatorConfiguration</span></span></div><div class="line"><span class="xml">        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</span></div><div class="line"><span class="xml">        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="comment">&lt;!--导入属性配置--&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbc.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">    <span class="comment">&lt;!--指定特定数据库的jdbc驱动jar包的位置</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">classPathEntry</span> <span class="attr">location</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;jdbc.driverLocation&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>/&gt;</span></span></div><div class="line"><span class="xml">    --&gt;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"default"</span> <span class="attr">targetRuntime</span>=<span class="string">"MyBatis3"</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!-- optional，旨在创建class时，对注释进行控制 --&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressDate"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressAllComments"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!--jdbc的数据库连接 --&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">jdbcConnection</span></span></span></div><div class="line"><span class="xml">                driverClass="$</span><span class="template-variable">&#123;jdbc.driverClassName&#125;</span><span class="xml">"</span></div><div class="line"><span class="xml">                connectionURL="$</span><span class="template-variable">&#123;jdbc.url&#125;</span><span class="xml">"</span></div><div class="line"><span class="xml">                userId="$</span><span class="template-variable">&#123;jdbc.username&#125;</span><span class="xml">"</span></div><div class="line"><span class="xml">                password="$</span><span class="template-variable">&#123;jdbc.password&#125;</span><span class="xml">"&gt;</span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制--&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">javaTypeResolver</span>&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"forceBigDecimals"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类</span></span></div><div class="line"><span class="xml">            targetPackage     指定生成的model生成所在的包名</span></div><div class="line"><span class="xml">            targetProject     指定在该项目下所在的路径</span></div><div class="line"><span class="xml">        --&gt;</span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"com.tarsbatis.beans"</span></span></span></div><div class="line"><span class="xml">                            targetProject="src/main/java"&gt;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">            <span class="comment">&lt;!-- 是否允许子包，即targetPackage.schemaName.tableName --&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span></div><div class="line"><span class="xml">            <span class="comment">&lt;!-- 是否对model添加 构造函数 --&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"constructorBased"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span></div><div class="line"><span class="xml">            <span class="comment">&lt;!-- 是否对类CHAR类型的列的数据进行trim操作 --&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"trimStrings"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span></div><div class="line"><span class="xml">            <span class="comment">&lt;!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 --&gt;</span></span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"immutable"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 --&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"com.tarsbatis.dao.mapper"</span></span></span></div><div class="line"><span class="xml">                         targetProject="src/main/java"&gt;</span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="comment">&lt;!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码</span></span></div><div class="line"><span class="xml">                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象</span></div><div class="line"><span class="xml">                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象</span></div><div class="line"><span class="xml">                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口</span></div><div class="line"><span class="xml">        --&gt;</span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"com.tarsbatis.dao"</span></span></span></div><div class="line"><span class="xml">                             targetProject="src/main/java" type="XMLMAPPER"&gt;</span></div><div class="line"><span class="xml">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"seckill"</span> <span class="attr">domainObjectName</span>=<span class="string">"Seckill"</span></span></span></div><div class="line"><span class="xml">               enableCountByExample="false" enableUpdateByExample="false"</span></div><div class="line"><span class="xml">               enableDeleteByExample="false" enableSelectByExample="false"</span></div><div class="line"><span class="xml">               selectByExampleQueryId="false"&gt;</span></div><div class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">context</span>&gt;</span></span></div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>三、配置Maven构建，点击Run-Edit Configurations，然后添加Maven配置</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fhcjng97wxj30vq06mjsl.jpg" alt=""></p>
+<p>四、点击Run运行，就可以生成相应的文件</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fhcjqgvandj308o042q2z.jpg" alt=""></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.mybatis.org/generator/index.html" target="_blank" rel="external">http://www.mybatis.org/generator/index.html</a></p>
+<p><a href="http://www.mybatis.org/generator/configreference/xmlconfig.html" target="_blank" rel="external">http://www.mybatis.org/generator/configreference/xmlconfig.html</a></p>
+<p><a href="https://my.oschina.net/lujianing/blog/200135" target="_blank" rel="external">https://my.oschina.net/lujianing/blog/200135</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Tars wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag">#MyBatis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/25/Java并发编程的艺术/" rel="next" title="《Java并发编程的艺术》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《Java并发编程的艺术》读书笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/07/08/MyBatis逆向工程/"
+           data-title="MyBatis逆向功能" data-url="http://yoursite.com/2017/07/08/MyBatis逆向工程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tars.png"
+               alt="Tars" />
+          <p class="site-author-name" itemprop="name">Tars</p>
+          <p class="site-description motion-element" itemprop="description">Make life simple</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tarscode" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2171892561" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/liu-yang-heuer" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/16e3390681e6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tars</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tarscode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

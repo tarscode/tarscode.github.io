@@ -1,0 +1,1023 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TarsCode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1、子类A继承父类B，A a = new A();执行先后顺序是：  父类Ｂ静态变量-&amp;gt;父类Ｂ静态代码块-&amp;gt;子类A静态变量-&amp;gt;子类Ａ静态代码块-&amp;gt;父类Ｂ非静态代码块-&amp;gt;父类Ｂ构造函数-&amp;gt;子类Ａ非静态代码块-&amp;gt;子类Ａ构造函数">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java专项练习总结">
+<meta property="og:url" content="http://yoursite.com/2016/07/27/Java专项练习总结/index.html">
+<meta property="og:site_name" content="TarsCode">
+<meta property="og:description" content="1、子类A继承父类B，A a = new A();执行先后顺序是：  父类Ｂ静态变量-&amp;gt;父类Ｂ静态代码块-&amp;gt;子类A静态变量-&amp;gt;子类Ａ静态代码块-&amp;gt;父类Ｂ非静态代码块-&amp;gt;父类Ｂ构造函数-&amp;gt;子类Ａ非静态代码块-&amp;gt;子类Ａ构造函数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNbRwly1fboz8lav11j30gn0iedhv.jpg">
+<meta property="og:updated_time" content="2017-02-20T14:15:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java专项练习总结">
+<meta name="twitter:description" content="1、子类A继承父类B，A a = new A();执行先后顺序是：  父类Ｂ静态变量-&amp;gt;父类Ｂ静态代码块-&amp;gt;子类A静态变量-&amp;gt;子类Ａ静态代码块-&amp;gt;父类Ｂ非静态代码块-&amp;gt;父类Ｂ构造函数-&amp;gt;子类Ａ非静态代码块-&amp;gt;子类Ａ构造函数">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/large/006tNbRwly1fboz8lav11j30gn0iedhv.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Java专项练习总结 | TarsCode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8e0099505ddf5626c155c62af53a2c72";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TarsCode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Make life simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java专项练习总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-27T20:26:41+08:00" content="2016-07-27">
+              2016-07-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/专项练习/" itemprop="url" rel="index">
+                    <span itemprop="name">专项练习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/27/Java专项练习总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/27/Java专项练习总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、子类A继承父类B，A a = new A();执行先后顺序是：</p>
+<blockquote>
+<p>父类Ｂ静态变量->父类Ｂ静态代码块->子类A静态变量->子类Ａ静态代码块->父类Ｂ非静态代码块->父类Ｂ构造函数->子类Ａ非静态代码块->子类Ａ构造函数</p>
+</blockquote>
+<a id="more"></a>
+<p>2、有如下一段代码，请选择其运行结果（）</p>
+<figure class="highlight processing"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> class StringDemo&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span> MESSAGE=<span class="string">"taobao"</span>;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span> []() args) &#123;</div><div class="line"><span class="keyword">String</span> a =<span class="string">"tao"</span>+<span class="string">"bao"</span>;</div><div class="line"><span class="keyword">String</span> b=<span class="string">"tao"</span>;</div><div class="line"><span class="keyword">String</span> c=<span class="string">"bao"</span>;</div><div class="line">System.out.<span class="built_in">println</span>(a==MESSAGE);</div><div class="line">System.out.<span class="built_in">println</span>((b+c)==MESSAGE);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>true false</p>
+</blockquote>
+<p>3、在基本JAVA类型中，如果不明确指定，整数型的默认是什么类型？带小数的默认是什么类型？</p>
+<blockquote>
+<p>int double</p>
+</blockquote>
+<p>4、下面代码正确的是</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> x;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String args[](</span>))</span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        System. <span class="keyword">out</span>. println(<span class="string">"Value is"</span> + x);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>非静态变量不能够被静态方法引用</p>
+</blockquote>
+<p>5、Jalse<br>false<br>true<br>true<br>falseava程序中的类名称必须与存放该类的文件名相同。</p>
+<blockquote>
+<p>错</p>
+</blockquote>
+<p>解析：声明为public类型的类名必须与文件名相同，默认权限的可以不同并且内部类的类名一般与文件名不同。</p>
+<p>6、以下代码的输出结果是？</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">B</span> &#123;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> B t1 = <span class="keyword">new</span> B();</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> B t2 = <span class="keyword">new</span> B();</div><div class="line">&#123;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"构造块"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">static</span></div><div class="line">&#123;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"静态块"</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[](</span>) args)</span>&#123;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"Main方法"</span>);</div><div class="line">B t = <span class="keyword">new</span> B();</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>构造块 构造块 静态块 Main方法 构造块</p>
+</blockquote>
+<p>解析：静态块，用static声明，JVM加载类时实行，仅执行一次。构造块，类中直接用{}定义，每一创建对象时执行。执行顺序优先级：静态块>main()>构造块>构造方法。题中的静态变量优先级最高，最先执行，因此先调用两次构造块。</p>
+<p>7、下面代码的输出结果是？</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> class Demo &#123;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span> args[]()) &#123;</div><div class="line"><span class="keyword">String</span> str1 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</div><div class="line"><span class="keyword">String</span> str2 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</div><div class="line"><span class="keyword">String</span> str3 = <span class="string">"hello"</span>;</div><div class="line"><span class="keyword">String</span> str4 = <span class="string">"hello"</span>;</div><div class="line"><span class="keyword">String</span> str5 = <span class="string">"he"</span>+<span class="string">"llo"</span>;</div><div class="line"><span class="keyword">String</span> str6 = <span class="string">"he"</span>;</div><div class="line"><span class="keyword">String</span> str7 = <span class="string">"llo"</span>;</div><div class="line">System.out.<span class="built_in">println</span>(str1==str2);</div><div class="line">System.out.<span class="built_in">println</span>(str1==str3);</div><div class="line">System.out.<span class="built_in">println</span>(str3==str4);</div><div class="line">System.out.<span class="built_in">println</span>(str3==<span class="string">"hello"</span>);</div><div class="line">System.out.<span class="built_in">println</span>(str4==(str6+str7));</div><div class="line"></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>false<br>false<br>true<br>true<br>false</p>
+</blockquote>
+<p>解析：String str1 = new String(“hello”);这种方式创建的字符串，和正常创建对象一样，保存在堆区。</p>
+<p>​     String str3 = “hello”;这种方式创建的字符串，保存在字符串常量区。</p>
+<p>8、BufferedReader的父类是一下哪个？</p>
+<blockquote>
+<p>Reader</p>
+</blockquote>
+<p>解析:</p>
+<p> <img src="https://ww2.sinaimg.cn/large/006tNbRwly1fboz8lav11j30gn0iedhv.jpg" alt="IO流"></p>
+<p>9、下面程序输出为：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EqualsMethod</span></div><div class="line">&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[](</span>) args)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">Integer n1 = <span class="keyword">new</span> Integer(<span class="number">47</span>);</div><div class="line">Integer n2 = <span class="keyword">new</span> Integer(<span class="number">47</span>);</div><div class="line">System.<span class="keyword">out</span>.print(n1 == n2);</div><div class="line">System.<span class="keyword">out</span>.print(<span class="string">","</span>);</div><div class="line">System.<span class="keyword">out</span>.println(n1 != n2);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>false,true</p>
+</blockquote>
+<p>解析：当Integer n1 = 47；或者Integer n1 = Integer.valueOf(47);值介于-128127时，才作为基本类型相等。</p>
+<p>10 、下面代码的输出结果是：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">test</span>&#123;</div><div class="line"><span class="keyword">static</span>&#123;</div><div class="line">   <span class="keyword">int</span> x=<span class="number">5</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">static</span> <span class="keyword">int</span> x,y;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String args[](</span>))</span>&#123;</div><div class="line">   x--;</div><div class="line">   myMethod( );</div><div class="line">   System.<span class="keyword">out</span>.println(x+y+ ++x);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myMethod</span>(<span class="params"> </span>)</span>&#123;</div><div class="line">  y=x++ + ++x;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>prints：3</p>
+</blockquote>
+<p>解析：1、静态语句块中的x为局部变量，不影响静态变量x的值。2、x和y为静态变量，默认初始值为0，属于当前类。3、java中自增操作非原子性的，main方法中：</p>
+<ul>
+<li>执行x–后x=-1</li>
+<li>调用myMethod方法，x执行x++结果为-1，但x=0，++x结果为1，则y=0</li>
+<li>x+y+ ++x先执行x+y，结果为1，执行++x结果为2，得到最终结果为3</li>
+</ul>
+<p>11、下面代码的输出结果是：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">test3</span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String args[](</span>))</span>&#123;</div><div class="line"><span class="keyword">int</span> a =<span class="number">1</span>,b =<span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> c1 = a+++b;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"a:"</span>+a+<span class="string">"b:"</span>+b+<span class="string">"c:"</span>+c1);</div><div class="line"><span class="keyword">int</span> c2 = a++ + ++b;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"a:"</span>+a+<span class="string">"b:"</span>+b+<span class="string">"c:"</span>+c2);</div><div class="line"><span class="keyword">int</span> c3 = a+++b;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"a:"</span>+a+<span class="string">"b:"</span>+b+<span class="string">"c:"</span>+c3);</div><div class="line"><span class="comment">//int c4 = a+++++b; 编译错误</span></div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"a:"</span>+a+<span class="string">"b:"</span>+b+<span class="string">"c:"</span>+c3);</div><div class="line"><span class="keyword">int</span> c5 = a+++b++;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"a:"</span>+a+<span class="string">"b:"</span>+b+<span class="string">"c:"</span>+c5);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>a:2b:1c:2<br>a:3b:2c:4<br>a:4b:2c:5<br>a:4b:2c:5<br>a:5b:3c:6</p>
+</blockquote>
+<p>12、下面代码的输出正确的是：</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="keyword">byte </span><span class="keyword">b1=1,b2=2,b3,b6; </span></div><div class="line"><span class="symbol">final</span> <span class="keyword">byte </span><span class="keyword">b4=4,b5=6; </span></div><div class="line"><span class="keyword">b6=b4+b5; </span></div><div class="line"><span class="keyword">b3=(b1+b2); </span></div><div class="line"><span class="symbol">System.out.println</span>(<span class="keyword">b3+b6);</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>语句：b3=b1+b2编译出错</p>
+</blockquote>
+<p>解析：被final修饰的变量是常量，这里b6=b4+b5可以看成是b6=10；在编译时已经变成b6=10了。而b1和b2是byte类型，java中进行计算时把他们提升为int类型，再进行计算，b1+b2计算后是int类型，赋值给b3，b3是byte类型，类型不匹配，因此编译不通过。</p>
+<p>13、一下关于Java语言异常处理描述正确的有？</p>
+<blockquote>
+<p>A、throw用于抛出异常</p>
+<p>B、throws关键字可以在方法上声明该方法要抛出的异常，然后在方法内部通过throw抛出异常对象</p>
+</blockquote>
+<p>解析：注意throws和throw方法的区别</p>
+<p>14、抽象类和接口的区别？</p>
+<blockquote>
+<p><strong>抽象类</strong></p>
+<p>特点:</p>
+<p>1.抽象类中可以构造方法</p>
+<p>2.抽象类中可以存在普通属性，方法，静态属性和方法。</p>
+<p>3.抽象类中可以存在抽象方法。</p>
+<p>4.如果一个类中有一个抽象方法，那么当前类一定是抽象类；抽象类中不一定有抽象方法。</p>
+<p>5.抽象类中的抽象方法，需要有子类实现，如果子类不实现，则子类也需要定义为抽象的。</p>
+<p><strong>接口</strong></p>
+<p>1.在接口中只有方法的声明，没有方法体。</p>
+<p>2.在接口中只有常量，因为定义的变量，在编译的时候都会默认加上</p>
+<p>public static final </p>
+<p>3.在接口中的方法，永远都被public来修饰。</p>
+<p>4.接口中没有构造方法，也不能实例化接口的对象。</p>
+<p>5.接口可以实现多继承</p>
+<p>6.接口中定义的方法都需要有实现类来实现，如果实现类不能实现接口中的所有方法</p>
+<p>7.则实现类定义为抽象类。</p>
+</blockquote>
+<p>15、Java程序的种类有（）</p>
+<blockquote>
+<p>内嵌于Web文件中，由浏览器查看的Applet</p>
+<p>可独立运行的Application</p>
+<p>服务器端的Servlet</p>
+</blockquote>
+<p>16、下列哪些针对代码运行结果的描述是正确的？</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">extends</span> <span class="title">Vehicle</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">public static void main (<span class="type">String</span>[]() args)</div><div class="line">&#123;</div><div class="line"><span class="keyword">new</span>  <span class="type">Car</span>(). run();</div><div class="line">&#125;</div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> void run()</div><div class="line">&#123;</div><div class="line"><span class="type">System</span>. out. println (<span class="string">"Car"</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> void run()</div><div class="line">&#123;</div><div class="line"><span class="type">System</span>. out. println(<span class="string">"Vehicle"</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Car</p>
+</blockquote>
+<p>解析：因为Vehicle类中的run方法是private的，因此子类Car中可以定义run方法。</p>
+<p>17、下面代码的输出结果是？</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">IfTest</span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params"><span class="keyword">string</span>[](</span>)args)</span>&#123;</div><div class="line"><span class="keyword">int</span> x=<span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> y=<span class="number">1</span>;</div><div class="line"><span class="keyword">if</span>(x=y)</div><div class="line">system.<span class="keyword">out</span>.println(“Not equal”);</div><div class="line"><span class="keyword">else</span></div><div class="line">system.<span class="keyword">out</span>.println(“Equal”);</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>An error at line 5 causes compilation to fall.</p>
+</blockquote>
+<p>解析：Java中if括号中的值是Boolean，而非整型。因此，结果中为整型会出现编译错误。</p>
+<p>18、有关hashMap和hashTable的区别，说法正确的是？</p>
+<blockquote>
+<p>A、HashMap和Hashtable都实现了Map接口</p>
+<p>B、HashMap是非synchronized，而Hashtable是synchronized</p>
+<p>C、HashTable使用Enumeration，HashMap使用Iterator</p>
+<p>D、Hashtable直接使用对象的hashCode，HashMap重新计算hash值，而且用与代替求模</p>
+</blockquote>
+<p>19、下面代码的输出结果？</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line">package Wangyi;</div><div class="line"><span class="keyword">class</span> <span class="title">Base</span></div><div class="line">&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"Base"</span>);</div><div class="line">&#125; </div><div class="line">&#125;</div><div class="line"><span class="keyword">class</span> <span class="title">Son</span> <span class="title">extends</span> <span class="title">Base</span></div><div class="line">&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"Son"</span>);</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodB</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">System.<span class="keyword">out</span>.println(<span class="string">"SonB"</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test01</span></div><div class="line">&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[](</span>) args)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">Base <span class="keyword">base</span> = <span class="keyword">new</span> Son();</div><div class="line"><span class="keyword">base</span>.method();</div><div class="line"><span class="keyword">base</span>.methodB();</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>编译不通过</p>
+</blockquote>
+<p>解析：Base base = new Son();创建了一个Base类的对象，new一个派生类赋值给积累，而基类中不含methodB方法，因此编译不通过。</p>
+<p>20、ServletConfig接口默认是哪里实现的？</p>
+<blockquote>
+<p>GenericServlet</p>
+</blockquote>
+<p>21、Servlet的生命周期可以分为初始化阶段，运行阶段和销毁阶段三个阶段，以下过程属于初始化阶段是（）。</p>
+<blockquote>
+<p>A、加载Servlet类及.class对应的数据</p>
+<p>B、创建serletRequest和servletResponse对象</p>
+<p>C、创建ServletConfig对象</p>
+<p>D、创建Servlet对象</p>
+<p>ACD</p>
+</blockquote>
+<p>22 、下面代码的输出是什么？</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Base</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span> String baseName = <span class="string">"base"</span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Base</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">callName();</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">callName</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">System. <span class="keyword">out</span>. println(baseName);</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Sub</span> <span class="title">extends</span> <span class="title">Base</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">private</span> String baseName = <span class="string">"sub"</span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">callName</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">System. <span class="keyword">out</span>. println (baseName) ;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[](</span>) args)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">Base b = <span class="keyword">new</span> Sub();</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>null</p>
+</blockquote>
+<p>解析：new Sub();在创建基类的过程中首先穿件基类对象，然后才能创建派生类，创建基类则默认调用Base()方法，在方法中调用callName()方法，由于派生类中存在此方法，则被调用的callName()方法是派生类中的方法，此时派生类还没有构造，所有变量baseName的值为null。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Tars wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/06/基本排序算法/" rel="next" title="基本排序算法">
+                <i class="fa fa-chevron-left"></i> 基本排序算法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/10/Servlet学习笔记/" rel="prev" title="Servlet学习笔记">
+                Servlet学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/27/Java专项练习总结/"
+           data-title="Java专项练习总结" data-url="http://yoursite.com/2016/07/27/Java专项练习总结/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tars.png"
+               alt="Tars" />
+          <p class="site-author-name" itemprop="name">Tars</p>
+          <p class="site-description motion-element" itemprop="description">Make life simple</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tarscode" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2171892561" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/liu-yang-heuer" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/16e3390681e6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tars</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tarscode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

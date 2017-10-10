@@ -1,0 +1,1034 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="多线程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TarsCode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="个人理解 多线程的意义：  对于单核CPU来说，在执行多任务时，能够提前将耗时较小的任务执行完毕。 对于多核CPU来说，在执行多任务时，能够将任务分配多个CPU进行处理，减少计算时间。">
+<meta name="keywords" content="多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Java多线程编程核心技术》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2016/12/20/《Java多线程编程核心技术》读书笔记/index.html">
+<meta property="og:site_name" content="TarsCode">
+<meta property="og:description" content="个人理解 多线程的意义：  对于单核CPU来说，在执行多任务时，能够提前将耗时较小的任务执行完毕。 对于多核CPU来说，在执行多任务时，能够将任务分配多个CPU进行处理，减少计算时间。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcly1fcrc5drc2pj30r90fwabw.jpg">
+<meta property="og:updated_time" content="2017-02-20T14:15:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Java多线程编程核心技术》读书笔记">
+<meta name="twitter:description" content="个人理解 多线程的意义：  对于单核CPU来说，在执行多任务时，能够提前将耗时较小的任务执行完毕。 对于多核CPU来说，在执行多任务时，能够将任务分配多个CPU进行处理，减少计算时间。">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/006tKfTcly1fcrc5drc2pj30r90fwabw.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 《Java多线程编程核心技术》读书笔记 | TarsCode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8e0099505ddf5626c155c62af53a2c72";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TarsCode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Make life simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《Java多线程编程核心技术》读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-20T21:03:29+08:00" content="2016-12-20">
+              2016-12-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/20/《Java多线程编程核心技术》读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/20/《Java多线程编程核心技术》读书笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>个人理解</strong></p>
+<p>多线程的意义：</p>
+<ul>
+<li>对于单核CPU来说，在执行多任务时，能够提前将耗时较小的任务执行完毕。</li>
+<li>对于多核CPU来说，在执行多任务时，能够将任务分配多个CPU进行处理，减少计算时间。</li>
+</ul>
+<a id="more"></a>
+<h4 id="第1章-Java多线程技能"><a href="#第1章-Java多线程技能" class="headerlink" title="第1章 Java多线程技能"></a>第1章 Java多线程技能</h4><p>主要是介绍Thread类中的核心方法，主要掌握下面关键技术点：</p>
+<ul>
+<li>线程的启动</li>
+<li>如何使线程暂停</li>
+<li>如何使线程停止</li>
+<li>线程的优先级</li>
+<li>想成安全相关的问题</li>
+</ul>
+<h5 id="使用多线程"><a href="#使用多线程" class="headerlink" title="使用多线程"></a>使用多线程</h5><ul>
+<li>继承Thread类</li>
+<li><p>实现Runnable接口</p>
+<p>非线程安全主要是指多个线程对同一个对象中的同一个实例变量进行操作时会出现值被更改、值不同步的情况，进而影响程序的执行流程。</p>
+</li>
+</ul>
+<h5 id="currentThread-方法"><a href="#currentThread-方法" class="headerlink" title="currentThread()方法"></a>currentThread()方法</h5><p>currentThread()方法可返回代码段正在被哪个线程调用的信息。</p>
+<h5 id="isAlive-方法"><a href="#isAlive-方法" class="headerlink" title="isAlive()方法"></a>isAlive()方法</h5><p>isAlive()方法的功能是判断当前的线程是否处于活动状态。活动状态就是线程已经启动且尚未终止。线程处于正在运行或准备开会运行的状态，就认为线程是“存活”的。</p>
+<h5 id="sleep-方法"><a href="#sleep-方法" class="headerlink" title="sleep()方法"></a>sleep()方法</h5><p>sleep()方法的作用是在指定的毫秒数内让当前“正在执行的线程”休眠(暂停执行)。这个“正在执行的线程”是指this.currentThread()返回的线程。</p>
+<h5 id="getId-方法"><a href="#getId-方法" class="headerlink" title="getId()方法"></a>getId()方法</h5><p>getId()方法的作用是取得线程的唯一标识。</p>
+<h5 id="停止线程"><a href="#停止线程" class="headerlink" title="停止线程"></a>停止线程</h5><p>停止一个线程意味着在线程处理完成任务之前停掉正在做的操作，也就是放弃当前的操作。停止一个线程可以使用Thread.stop()方法，但最好不使用，因为这个方法是不安全的。大多数停止一个线程的操作使用Thread.interrupt()方法，尽管方法的名称是“停止，中止”，但是这个方法不会终止一个正在运行的线程，还需要加入一个判断才可以完成线程的停止。</p>
+<p>在Java中有一下3种方法可以终止正在运行的线程：</p>
+<ul>
+<li><p>使用退出标志，使线程正常退出，也就是当run方法完成后线程终止。</p>
+</li>
+<li><p>使用stop方法强行终止线程，但是不推荐使用这个方法，因为stop和suspend及resume一样都是作废过期的方法，使用它们可能产生不可预料的结果。</p>
+</li>
+<li><p>使用interrupt方法终端线程。</p>
+</li>
+</ul>
+<p>调用interrupt()方法仅仅是在当前线程中打了一个停止的标记，并不是真的停止线程。</p>
+<p>this.interrupt()：测试当前线程是否已经是中断状态，执行后具有将状态标志置清除为false的功能。</p>
+<p>this.isInterrupted()：测试线程Thread对象是否已经是中断状态，但不清除状态标志。</p>
+<h5 id="暂停线程"><a href="#暂停线程" class="headerlink" title="暂停线程"></a>暂停线程</h5><p>在Java多线程中，可以使用suspend()方法暂停线程，使用resume()方法恢复线程的执行。</p>
+<p>缺点：</p>
+<ul>
+<li>独占，如果使用不当，极易造成公共的同步对象的独占，使其他线程无法访问公共同步对象。</li>
+<li>不同步，容易出现因为线程的暂停而导致数据不同步的情况。</li>
+</ul>
+<h5 id="yield方法"><a href="#yield方法" class="headerlink" title="yield方法"></a>yield方法</h5><p>yield()方法的作用是放弃当前的CPU资源，将它让给其他的任务去占用CPU执行时间。但放弃的时间不确定，有可能刚刚放弃，马上又获得CPU的时间片。</p>
+<h5 id="线程的优先级"><a href="#线程的优先级" class="headerlink" title="线程的优先级"></a>线程的优先级</h5><p>设置线程的优先级使用setPriority()方法，在Java中，线程的优先级分为110这10个等级，如果小于1或大于10，则JDK抛出异常。</p>
+<h5 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h5><p>Java线程中有两种线程，一种是用户线程，另外一种守护(Daemon)线程。守护线程是一种特殊的线程，他的特性有陪伴的含义，当进程中没有非守护线程了，则守护线程自动销毁。典型的守护线程就是垃圾回收线程。</p>
+<h4 id="第2章-对象及变量的并发访问"><a href="#第2章-对象及变量的并发访问" class="headerlink" title="第2章 对象及变量的并发访问"></a>第2章 对象及变量的并发访问</h4><p>主要介绍Java多线程中的同步，也就是如何在Java语言中写出线程安全的程序，如何在Java语言中解决非线程安全的相关问题。主要掌握的技术要点如下：</p>
+<ul>
+<li>synchronized对象监视器为Object时的使用</li>
+<li>synchronized对象监视器为Class时的使用</li>
+<li>非线程安全是如何出现的</li>
+<li>关键字volatile的主要作用</li>
+<li>关键字volatitle与synchronized的区别及使用情况</li>
+</ul>
+<h5 id="synchronized同步方法"><a href="#synchronized同步方法" class="headerlink" title="synchronized同步方法"></a>synchronized同步方法</h5><p>“非线程安全问题”其实会在多个线程对同一个对象中的实例变量进行并发访问时发生，产生的后果就是“脏读(dirtyRead)“,也就是渠道的数据其实是被更改过的。</p>
+<p>“非线程安全”问题存在于“<strong>实例变量</strong>“中，如果是方法内部的私有变量，则不存在“非线程安全”问题。</p>
+<p>调用关键字synchronized声明的方法一定是排队运行的。另外记住“<strong>共享</strong>”两个字，只有共享资源的读写访问才需要同步化，如果不是共享资源，那么根本没有同步的必要。</p>
+<p>当A线程调用anyObject对象加入synchronized关键字的X方法时，A线程就获得了X方法锁，更准确的讲是获得了对象的锁。所以其他线程必须等A线程执行完毕才能调用X方法，但B线程可以调用其他的<strong>非synchronized</strong>同步方法。</p>
+<p>关键字synchronized拥有<strong>锁重入</strong>的功能，也就是在使用synchronized时，当一个线程得到一个对象锁后，再次请求此对象锁时是可以再次得到该对象的锁的。“<strong>可重入锁</strong>”的概念是：自己可以再次获得自己的内部锁。比如有1条线程获得了某个对象的锁，此时这个对象锁还没有释放，当其再次想要获取这个对象的锁的时候还是可以获取的，如果锁不可重入的话就会造成死锁。</p>
+<p>当一个线程执行的代码出现异常时，其所持有的锁会自动释放。</p>
+<p>同步不可继承。</p>
+<h5 id="synchronized同步语句块"><a href="#synchronized同步语句块" class="headerlink" title="synchronized同步语句块"></a>synchronized同步语句块</h5><p>用关键字synchronized声明方法在某些情况下是有弊端的，比如A线程调用同步方法执行一个长时间的任务，那么B线程则必须等待比较长时间。在这样的情况下可以使用synchronized同步语句块来解决。synchronized方法是对当前对象进行加锁，而<strong>synchronized代码块</strong>是对某一个对象进行加锁。</p>
+<p>当两个并发线程访问同一个对象Object中的synchronized(this)同步代码块时,一段时间内只能有一个线程被执行，另一个线程必须等待当前线程执行完这个代码块以后才能执行该代码块。</p>
+<p><strong>synchronized代码块间的同步性</strong>：在使用同步sychronized(this)代码块时需要注意的是，当一个线程访问Object的一个synchronized(this)同步代码块时，其他线程对同一个Object中其他所有synchronized(this)同步代码块的访问将被阻塞，这说明synchronized使用的“对象监视器”是一个。</p>
+<p><strong>将任一对象作为对象监视器</strong>：多个线程调用同一个对象的不同名称的synchronized同步方法或synchronized(this)同步代码块时，调用的效果就是按顺序执行，也就是同步的，阻塞的。这就说明synchronized 同步方法有两种作用：</p>
+<ol>
+<li><p>对其他的synchronized同步方法或synchronized(this)代码块调用呈阻塞状态。</p>
+</li>
+<li><p>同一时间只有一个线程可以执行synchronized同步方法中的代码。</p>
+</li>
+</ol>
+<p>“synchronized(非this对象x)”格式的写法是将x对象本身作为“对象监视器“,这样可以得出以下3个结论：</p>
+<ol>
+<li><p>当多个线程同时执行synchronized(x){}同步代码块时呈现同步效果。</p>
+</li>
+<li><p>当其他线程执行x对象中synchronized同步方法时呈同步效果。</p>
+</li>
+<li><p>当其他线程执行x对象方法俩面的synchronized(this)代码块时也呈现同步效果。</p>
+</li>
+</ol>
+<p>但需要注意的是，如果其他线程调用不加synchronized关键字的方法时，还是异步调用。</p>
+<p> <strong>静态同步synchronized方法与synchronized(this)代码块</strong>：关键字</p>
+<p>synchronized还可以应用在static静态方法上，是对当前的*.java文件对应的</p>
+<p>Class类进行持锁。</p>
+<p><strong>数据类型String的常量池特性</strong>：将synchronized(String)同步块与String联合使用时，要注意常量池带来的一些例外。因此，在大多数的情况下，同步synchronized代码块都不使用String作为锁的对象。</p>
+<h5 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h5><p>关键字volatile的主要作用是使变量在多个线程间可见。关键字volatile强制从公共堆栈中取得变量的值，而不是从线程私有数据栈中取得变量的值。使用volatile关键字增加了实例变量在多个线程之间的可见性。但valatile关键字最致命的缺点是不支持原子性。</p>
+<p><strong>关键字synchronized和volatile的比较</strong>：</p>
+<ul>
+<li><p>关键字volatile是线程同步的轻量级实现，所以volatile性能肯定比synchronized要好，并且volatile是能修饰变量，而synchronized可以修饰方法，以及代码块。</p>
+</li>
+<li><p>多线程访问volatile不会发生阻塞，而synchronized会出现阻塞。</p>
+</li>
+<li><p>volatile能保证数据的可见性，但不能保证原子性；而synchronized可以保证原子性，也可以间接保证可见性，因为他会将私有内存和公共内存中的数据做同步。</p>
+</li>
+<li><p>关键字volatile解决的是变量在多个线程之间的可见性；而synchronized关键字解决的是多个线程之间访问资源的同步性。</p>
+</li>
+</ul>
+<p>线程安全包含<strong>原子性</strong>和<strong>可见性</strong>两个方面，Java的同步机制都是围绕这两个方面来确保线程安全的。</p>
+<p>表达式i++的操作步骤如下：</p>
+<p>1、从内存中取出i的值</p>
+<p>2、计算i的值</p>
+<p>3、将i的值写到内存中</p>
+<p>假如在第2步计算值的时候，另外一个线程也修改i的值，那么就会出现脏数据。</p>
+<h4 id="第3章-线程间通信"><a href="#第3章-线程间通信" class="headerlink" title="第3章 线程间通信"></a>第3章 线程间通信</h4><p>主要掌握的技术点如下：</p>
+<ul>
+<li>使用wait/notify实现线程间的通信。</li>
+<li>生产者/消费者模式的实现</li>
+<li>方法join的使用</li>
+<li>ThreadLocal类的使用</li>
+</ul>
+<h5 id="等待-通知机制"><a href="#等待-通知机制" class="headerlink" title="等待/通知机制"></a>等待/通知机制</h5><p><strong>等待/通知机制的实现</strong></p>
+<p>wait和notify：wait使线程停止运行，notify使停止的线程继续运行。</p>
+<p>方法wait()的作用是使当前执行代码的线程进行等待，wait()方法是Object类的方法，该方法用来将当前线程置入“预执行队列”中，并且在wait()所在的代码行处停止执行，直到接到通知或中断为止。</p>
+<p>方法notify()也要在同步方法或同步块中调用。即在调用前，线程也必须获得该对象的对象级别锁。</p>
+<p>需要注意的是在执行notify()方法后，当前线程不会马上释放该对象锁，要等到notify()方法的线程将程序执行完，也是退出synchronized代码块后，当前线程才会释放锁。</p>
+<p><strong>线程的状态切换</strong><br><img src="https://ww1.sinaimg.cn/large/006tKfTcly1fcrc5drc2pj30r90fwabw.jpg" alt="线程状态切换示意图"></p>
+<p>1）新创建一个线程对象后，再调用它的start()方法，系统会为此线程分配CPU资源，使其处于Runnable(可运行)状态，这是一个准备运行的阶段。如果线程抢占到CPU资源，此线程就处于Running(运行)状态。</p>
+<p>2）Runnable状态和Running状态可相互切换，因为有可能线程运行一段时间后，有其他高优先级线程抢占了CPU资源，此时线程从Running状态变成了Runnable状态。</p>
+<p>线程进入Runnable状态大体分以下5种情况：</p>
+<ul>
+<li><p>调用sleep()方法后经过的时间超过了指定的休眠时间</p>
+</li>
+<li><p>线程调用的阻塞IO已经返回，阻塞方法执行完毕</p>
+</li>
+<li><p>线程成功获得了试图同步的监视器</p>
+</li>
+<li><p>线程正在等待某个通知，其他线程发出了通知</p>
+</li>
+<li><p>处于挂起状态的线程调用了resume恢复方法</p>
+</li>
+</ul>
+<p>3）Blocked是阻塞的意思，例如遇到了一个IO操作，此时CPU处于空闲状态，可能会转而把CPU时间片分配给其他线程，这时也可以称为“暂停”状态。Blocked状态结束后，进入Runnable状态，等待系统重新分配资源。</p>
+<p>出现阻塞的情况大体分下面5种：</p>
+<ul>
+<li><p>线程调用了sleep方法，主动放弃占用的处理器资源</p>
+</li>
+<li><p>线程调用了阻塞式IO方法，在该方法返回前，该线程被阻塞</p>
+</li>
+<li><p>线程视图获得一个同步监视器，但该同步监视器正在被其他线程所持有</p>
+</li>
+<li><p>线程等待某个通知</p>
+</li>
+<li><p>程序调用了suspend方法将该线程挂起。此方法容易导致死锁，尽量避免使用该方法。</p>
+</li>
+</ul>
+<p>4）run()方法运行结束后进入销毁阶段，整个线程执行完毕。</p>
+<p>每个对象都有两个队列，一个是就绪队列，一个是阻塞队列。就绪队列存储了将要获得锁的线程，阻塞队列存储了被阻塞的线程。</p>
+<p><strong>方法wait()锁释放与notify()锁不释放</strong></p>
+<p>方法wait()被执行后，锁自动释放，但执行完notify()方法后，锁却不自动释放。sleep方法不释放锁。</p>
+<h5 id="方法join的使用"><a href="#方法join的使用" class="headerlink" title="方法join的使用"></a>方法join的使用</h5><p>方法join()的作用是等待线程对象销毁。例如，主线程创建并启动子线程后，子线程中执行大量的耗时操作，如果此时主线程想等待子线程完成之后再结束，此时执行需要用到join方法。</p>
+<p>方法join具有是线程排队运行的作用，有些类似同步的运行效果。join与synchronized的区别是：join内部使用wait()方法进行等待，而sychronized关键字使用的是“对象监视器”原理作为同步。</p>
+<p>方法join(long)与sleep(long)的区别：join(long)方法具有释放锁的特点，而Thread.sleep(long)方法却不释放锁。 </p>
+<h5 id="类ThreadLocal的使用"><a href="#类ThreadLocal的使用" class="headerlink" title="类ThreadLocal的使用"></a>类ThreadLocal的使用</h5><p>变量值共享可以使用public static变量的形式，所有线程都使用同一public static变量。如果每一个线程都想有自己的共享变量呢?ThreadLocal正是为了解决这样的问题。</p>
+<p>类ThreadLocal主要解决的是每个线程绑定自己的值。</p>
+<h5 id="类InheritableThreadLocal的使用"><a href="#类InheritableThreadLocal的使用" class="headerlink" title="类InheritableThreadLocal的使用"></a>类InheritableThreadLocal的使用</h5><p>类InheritatbleThreadLocal可以在子线程中取得父线程继承下来的值。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Tars wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/多线程/" rel="tag">#多线程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/13/数据库知识总结/" rel="next" title="数据库知识总结">
+                <i class="fa fa-chevron-left"></i> 数据库知识总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/29/《图解HTTP》读书笔记/" rel="prev" title="《图解HTTP》读书笔记">
+                《图解HTTP》读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/20/《Java多线程编程核心技术》读书笔记/"
+           data-title="《Java多线程编程核心技术》读书笔记" data-url="http://yoursite.com/2016/12/20/《Java多线程编程核心技术》读书笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tars.png"
+               alt="Tars" />
+          <p class="site-author-name" itemprop="name">Tars</p>
+          <p class="site-description motion-element" itemprop="description">Make life simple</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tarscode" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2171892561" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/liu-yang-heuer" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/16e3390681e6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第1章-Java多线程技能"><span class="nav-number">1.</span> <span class="nav-text">第1章 Java多线程技能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用多线程"><span class="nav-number">1.1.</span> <span class="nav-text">使用多线程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#currentThread-方法"><span class="nav-number">1.2.</span> <span class="nav-text">currentThread()方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#isAlive-方法"><span class="nav-number">1.3.</span> <span class="nav-text">isAlive()方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sleep-方法"><span class="nav-number">1.4.</span> <span class="nav-text">sleep()方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getId-方法"><span class="nav-number">1.5.</span> <span class="nav-text">getId()方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#停止线程"><span class="nav-number">1.6.</span> <span class="nav-text">停止线程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#暂停线程"><span class="nav-number">1.7.</span> <span class="nav-text">暂停线程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#yield方法"><span class="nav-number">1.8.</span> <span class="nav-text">yield方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#线程的优先级"><span class="nav-number">1.9.</span> <span class="nav-text">线程的优先级</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#守护线程"><span class="nav-number">1.10.</span> <span class="nav-text">守护线程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第2章-对象及变量的并发访问"><span class="nav-number">2.</span> <span class="nav-text">第2章 对象及变量的并发访问</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#synchronized同步方法"><span class="nav-number">2.1.</span> <span class="nav-text">synchronized同步方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#synchronized同步语句块"><span class="nav-number">2.2.</span> <span class="nav-text">synchronized同步语句块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#volatile关键字"><span class="nav-number">2.3.</span> <span class="nav-text">volatile关键字</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第3章-线程间通信"><span class="nav-number">3.</span> <span class="nav-text">第3章 线程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#等待-通知机制"><span class="nav-number">3.1.</span> <span class="nav-text">等待/通知机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法join的使用"><span class="nav-number">3.2.</span> <span class="nav-text">方法join的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类ThreadLocal的使用"><span class="nav-number">3.3.</span> <span class="nav-text">类ThreadLocal的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类InheritableThreadLocal的使用"><span class="nav-number">3.4.</span> <span class="nav-text">类InheritableThreadLocal的使用</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tars</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tarscode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

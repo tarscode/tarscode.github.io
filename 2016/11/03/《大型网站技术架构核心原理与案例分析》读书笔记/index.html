@@ -1,0 +1,1001 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="架构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TarsCode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="书名：《大型网站技术架构-核心原理与案例分析》作者：李智慧">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大型网站技术架构核心原理与案例分析》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2016/11/03/《大型网站技术架构核心原理与案例分析》读书笔记/index.html">
+<meta property="og:site_name" content="TarsCode">
+<meta property="og:description" content="书名：《大型网站技术架构-核心原理与案例分析》作者：李智慧">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006y8lVagy1fcek25zuquj30go099dhr.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006y8lValy1fcekiix86dj30go070ta4.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006y8lValy1fcen398fu7j30go02rgm0.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006y8lValy1fcen3tmzvrj30go02hgm4.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79ly1fchq2nzk3dj309j0b4751.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79jw1fchr712g6sj30gj08ddgb.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79jw1fcht5vsk1sj30go084ta2.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79jw1fchtpdek44j30go0c6jrz.jpg">
+<meta property="og:updated_time" content="2017-02-23T11:51:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《大型网站技术架构核心原理与案例分析》读书笔记">
+<meta name="twitter:description" content="书名：《大型网站技术架构-核心原理与案例分析》作者：李智慧">
+<meta name="twitter:image" content="https://ww4.sinaimg.cn/large/006y8lVagy1fcek25zuquj30go099dhr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 《大型网站技术架构核心原理与案例分析》读书笔记 | TarsCode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8e0099505ddf5626c155c62af53a2c72";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TarsCode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Make life simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《大型网站技术架构核心原理与案例分析》读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T20:36:19+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/《大型网站技术架构核心原理与案例分析》读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/《大型网站技术架构核心原理与案例分析》读书笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>书名：《大型网站技术架构-核心原理与案例分析》<br>作者：李智慧</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="第一章-大型网站架构演化发展历程"><a href="#第一章-大型网站架构演化发展历程" class="headerlink" title="第一章 大型网站架构演化发展历程"></a>第一章 大型网站架构演化发展历程</h4><ul>
+<li>应用服务和数据服务分离</li>
+<li>使用缓存改善网站性能</li>
+<li>使用应用服务器集群改善网站的并发处理能力</li>
+<li>数据库读写分离</li>
+<li>使用反向代理和CDN加速网站响应</li>
+<li>使用分布式文件系统和分布式数据库系统</li>
+<li>使用NoSQL和搜索引擎</li>
+<li>业务拆分</li>
+<li>分布式服务</li>
+</ul>
+<p><img src="https://ww4.sinaimg.cn/large/006y8lVagy1fcek25zuquj30go099dhr.jpg" alt="大型网站架构图"></p>
+<h4 id="第三章-大型网站核心架构要素"><a href="#第三章-大型网站核心架构要素" class="headerlink" title="第三章 大型网站核心架构要素"></a>第三章 大型网站核心架构要素</h4><ul>
+<li>性能</li>
+<li>可用性</li>
+<li>伸缩性</li>
+<li>拓展性</li>
+<li>安全性</li>
+</ul>
+<h4 id="第四章-瞬时响应：网站的高性能架构"><a href="#第四章-瞬时响应：网站的高性能架构" class="headerlink" title="第四章 瞬时响应：网站的高性能架构"></a>第四章 瞬时响应：网站的高性能架构</h4><p>常用操作系统响应时间表</p>
+<p><img src="https://ww3.sinaimg.cn/large/006y8lValy1fcekiix86dj30go070ta4.jpg" alt=""></p>
+<p> 1秒=1000毫秒=1000000微秒</p>
+<p>性能测试指标</p>
+<ul>
+<li>响应时间</li>
+<li>并发数</li>
+<li>吞吐量</li>
+<li>性能计数器</li>
+</ul>
+<p>性能计数器是描述服务器或操作系统的一些数据指标，包括System Load、对象与线程数、内存使用、CPU使用、磁盘与网络I/O等指标。System Load即系统负载，指当前整备CPU执行和等待被CPU执行的进程数目总和，是反映系统忙闲程度的重要指标。Linux系统中使用top命令查看。</p>
+<p>性能测试方法</p>
+<ul>
+<li>性能测试</li>
+<li>负载测试</li>
+<li>压力测试</li>
+<li>稳定性测试</li>
+</ul>
+<p><strong>Web前端性能优化</strong>，一般Web前端是指网站业务逻辑之前的部分，包括浏览器加载、网站视图模型、图片服务、CDN服务等，主要优化手段有优化浏览器访问、使用反向代理、CDN等。</p>
+<p>浏览器访问优化：</p>
+<ol>
+<li>减少HTTP请求</li>
+<li>使用浏览器缓存</li>
+<li>启用压缩</li>
+<li>CSS放在页面最上面、JavaScript放在页面最下面</li>
+<li>减少Cookie传输</li>
+</ol>
+<p><strong>应用服务器性能优化</strong>，主要优化手段有缓存、集群、异步等。网站性能优化第一定律：优先考虑缓存优化性能。</p>
+<ul>
+<li>分布式缓存</li>
+<li>异步操作（消息队列具有很好的削峰作用）</li>
+<li>使用集群</li>
+<li>代码优化</li>
+</ul>
+<p>不使用消息队列服务器<br><img src="https://ww4.sinaimg.cn/large/006y8lValy1fcen398fu7j30go02rgm0.jpg" alt=""></p>
+<p>使用消息队列服务器<br><img src="https://ww1.sinaimg.cn/large/006y8lValy1fcen3tmzvrj30go02hgm4.jpg" alt=""></p>
+<p><strong>代码优化</strong></p>
+<ol>
+<li>多线程：解决线程安全主要手段是将对象设计成无状态对象、使用局部对象、并访问资源时使用锁。</li>
+<li>资源复用：比如数据库连接、网络通信连接、线程、复杂对象等。编程角度资源复用主要有两种模式：单例和对象池。</li>
+<li>数据结构</li>
+<li>垃圾回收</li>
+</ol>
+<h4 id="第五章-网站的高可用架构"><a href="#第五章-网站的高可用架构" class="headerlink" title="第五章 网站的高可用架构"></a>第五章 网站的高可用架构</h4><p>分层后按模块分割的网站架构模型</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fchq2nzk3dj309j0b4751.jpg" alt="分层后按模块分割的网站架构模型"></p>
+<p>应用服务器集群的Session管理</p>
+<ul>
+<li>Session复制</li>
+<li>Session绑定</li>
+<li>利用Cookie记录Session</li>
+<li>Session服务器</li>
+</ul>
+<p>高可用的服务</p>
+<ol>
+<li>分级管理：核心应用和服务优先使用更好的硬件</li>
+<li>超时设置</li>
+<li>异步调用</li>
+<li>服务降级：有两种手段，拒绝服务和关闭服务</li>
+<li>幂等性设计：服务层保证服务重复调用和调用一次产生的结果相同，即服务具有幂等性(如转账操作)</li>
+</ol>
+<p>高可用的数据有如下几方面的含义：</p>
+<ol>
+<li>数据持久性：保证数据可持久存储</li>
+<li>数据可访问性</li>
+<li>数据一致性</li>
+</ol>
+<p>CAP原理认为，一个提供数据服务的存储系统无法同时满足数据一致性(Consistency)、数据可用性(Availibility)、分区耐受性(Patition Tolerance,系统具有跨网络分区的伸缩性)这三个条件，如图所示：</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79jw1fchr712g6sj30gj08ddgb.jpg" alt="CAP原理"></p>
+<h4 id="第六章-永无止境：网站的伸缩性架构"><a href="#第六章-永无止境：网站的伸缩性架构" class="headerlink" title="第六章 永无止境：网站的伸缩性架构"></a>第六章 永无止境：网站的伸缩性架构</h4><p>所谓网站的伸缩性是指不需要改变网站的软硬件设计,仅仅通过改变部署的服务器数量就可以扩大或缩小网站的服务处理能力。</p>
+<p>负载均衡的基础技术：</p>
+<ol>
+<li>HTTP重定向负载均衡</li>
+<li>DNS域名解析负载均衡</li>
+<li>反向代理负载均衡</li>
+<li>IP负载均衡</li>
+<li>数据链路层负载均衡(LVS)</li>
+</ol>
+<p>负载均衡算法：</p>
+<ul>
+<li>轮询(Round Robin,RR)</li>
+<li>加权轮询(Weighted Round Robin,WRR)</li>
+<li>随机(Random)</li>
+<li>最少连接(Least Connections)</li>
+<li>源地址散列(Source Hashing)</li>
+</ul>
+<p>Memcached分布式缓存访问模型</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79jw1fcht5vsk1sj30go084ta2.jpg" alt=""></p>
+<p>分布式缓存的一致性Hash算法</p>
+<p>使用虚拟节点的一致性Hash环：具体应用中，这个长度为2的32次方的一致性Hash环通常采用二叉查找树实现，这个二叉树的最右边叶子节点和最左边的叶子节点相连接，构成环。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79jw1fchtpdek44j30go0c6jrz.jpg" alt=""></p>
+<p>计算机领域有句话：<strong>计算机的任何问题都可以通过增加一个虚拟层来解决</strong>，上图中的一台物理服务器对应的虚拟机服务器节点的数量经验值是150。  </p>
+<h4 id="第七章-随需应变：网站的可扩展架构"><a href="#第七章-随需应变：网站的可扩展架构" class="headerlink" title="第七章 随需应变：网站的可扩展架构"></a>第七章 随需应变：网站的可扩展架构</h4><p><strong>扩展性</strong>(Extensibility):指对现有系统影响最小的情况下，系统功能可持续扩展或提升的能力。表现在系统基础设施稳定不需要经常变更，应用之间较少依赖和耦合，对需求变更可以敏捷响应。它是系统架构设计层面的开闭原则(对扩展开放，对修改关闭)。</p>
+<p><strong>伸缩性</strong>(Scalability):指系统能够通过增加(减少)自身资源规模的方式增强(减少)自己计算处理事务的能力。</p>
+<h4 id="第八章-固若金汤：网站的安全架构"><a href="#第八章-固若金汤：网站的安全架构" class="headerlink" title="第八章 固若金汤：网站的安全架构"></a>第八章 固若金汤：网站的安全架构</h4>
+      
+    </div>
+    
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Tars wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag">#架构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/10/Servlet学习笔记/" rel="next" title="Servlet学习笔记">
+                <i class="fa fa-chevron-left"></i> Servlet学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/19/《大型分布式网站架构架构设计与实践》读书笔记/" rel="prev" title="《大型分布式网站架构架构设计与实践》读书笔记">
+                《大型分布式网站架构架构设计与实践》读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/03/《大型网站技术架构核心原理与案例分析》读书笔记/"
+           data-title="《大型网站技术架构核心原理与案例分析》读书笔记" data-url="http://yoursite.com/2016/11/03/《大型网站技术架构核心原理与案例分析》读书笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tars.png"
+               alt="Tars" />
+          <p class="site-author-name" itemprop="name">Tars</p>
+          <p class="site-description motion-element" itemprop="description">Make life simple</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tarscode" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2171892561" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/liu-yang-heuer" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/16e3390681e6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一章-大型网站架构演化发展历程"><span class="nav-number">1.</span> <span class="nav-text">第一章 大型网站架构演化发展历程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三章-大型网站核心架构要素"><span class="nav-number">2.</span> <span class="nav-text">第三章 大型网站核心架构要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四章-瞬时响应：网站的高性能架构"><span class="nav-number">3.</span> <span class="nav-text">第四章 瞬时响应：网站的高性能架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五章-网站的高可用架构"><span class="nav-number">4.</span> <span class="nav-text">第五章 网站的高可用架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六章-永无止境：网站的伸缩性架构"><span class="nav-number">5.</span> <span class="nav-text">第六章 永无止境：网站的伸缩性架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第七章-随需应变：网站的可扩展架构"><span class="nav-number">6.</span> <span class="nav-text">第七章 随需应变：网站的可扩展架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第八章-固若金汤：网站的安全架构"><span class="nav-number">7.</span> <span class="nav-text">第八章 固若金汤：网站的安全架构</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tars</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tarscode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

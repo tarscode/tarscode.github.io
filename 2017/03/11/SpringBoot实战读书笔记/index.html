@@ -1,0 +1,959 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TarsCode" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="《Spring Boot实战》这本书虽然题目是Spring Boot，但是有一半的内容讲的是Spring，虽然有点偏题之嫌，但是书中讲的Spring还是非常有条理的，让人看着清晰明了。">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Spring Boot实战》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/SpringBoot实战读书笔记/index.html">
+<meta property="og:site_name" content="TarsCode">
+<meta property="og:description" content="《Spring Boot实战》这本书虽然题目是Spring Boot，但是有一半的内容讲的是Spring，虽然有点偏题之嫌，但是书中讲的Spring还是非常有条理的，让人看着清晰明了。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-03-11T12:34:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Spring Boot实战》读书笔记">
+<meta name="twitter:description" content="《Spring Boot实战》这本书虽然题目是Spring Boot，但是有一半的内容讲的是Spring，虽然有点偏题之嫌，但是书中讲的Spring还是非常有条理的，让人看着清晰明了。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 《Spring Boot实战》读书笔记 | TarsCode </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8e0099505ddf5626c155c62af53a2c72";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TarsCode</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Make life simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-read">
+          <a href="/read" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《Spring Boot实战》读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T20:28:43+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/11/SpringBoot实战读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/SpringBoot实战读书笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>《Spring Boot实战》这本书虽然题目是Spring Boot，但是有一半的内容讲的是Spring，虽然有点偏题之嫌，但是书中讲的Spring还是非常有条理的，让人看着清晰明了。</p>
+<a id="more"></a>
+<h3 id="Spring基础"><a href="#Spring基础" class="headerlink" title="Spring基础"></a>Spring基础</h3><h4 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h4><p>Spring管理的对象称为beans。</p>
+<p>控制反转IoC(Inversioin Of Control)和依赖注入DI(Dependency Injection)的区别：IoC有两种方式一种是DI,另外一种是DL,即Dependency Lookup( 依赖查找)。</p>
+<p>Spring IoC容器的依赖注入流程：</p>
+<ol>
+<li>收集和注册：定义bean</li>
+<li>分析和组装：查找依赖</li>
+</ol>
+<p>Spring Boot通过提供众多起步依赖降低项目依赖的复杂度。起步依赖本质上是一个Maven项目对象模型(Project Object Model,POM)定义了对其他库的传递依赖。</p>
+<p>Spring使用简单的POJO(Plain Old Java Object,无任何限制的普通对象)来进行企业级开发。每一个被Spring管理的Java对象都称之为Bean；而Spring提供了一个IoC容器用来初始化对象，解决对象间的依赖管理和对象的使用。</p>
+<p>Spring框架本身有四大原则：</p>
+<ol>
+<li>使用POJO进行轻量级和最小侵入式开发；</li>
+<li>通过依赖注入和基于接口编程实现松耦合；</li>
+<li>通过AOP和默认习惯进行声明式编程</li>
+<li>使用AOP和模板(template)减少模块代码</li>
+</ol>
+<p>Spring IoC容器(ApplicationContext)负责创建Bean，并通过容器将类Bean注入到你需要的Bean中。Spring提供使用xml、注解、Java配置、groovy配置实现Bean的创建和注入。其中Java配置是通过@Configuration和@Bean来实现的。</p>
+<p>声明Bean的注解：</p>
+<ul>
+<li>@Component组件，没有明确的角色</li>
+<li>@Service在业务逻辑层(service层)使用</li>
+<li>@Repository在数据访问层(dao层)使用</li>
+<li>@Controller在展现层(MVC->Spring MVC)使用</li>
+</ul>
+<p>注入Bean的注解，一般情况下通用，下面三个注解可注解在set方法上或者属性上：</p>
+<ul>
+<li>@Autowired：Spring提供的注释</li>
+<li>@Inject：JSR-330提供的注解</li>
+<li>@Resource：JSR-250提供的注解</li>
+</ul>
+<p>其他注解：</p>
+<ul>
+<li>@Configuration声明当前类是一个配置类，相当于一个Spring配置的xml文件</li>
+<li>@ComponentScan自动扫描包名下所有使用@Service、@Component、@Repository和@Controller的类，并注册为Bean</li>
+<li>Bean注解在方法上，声明当前方法的返回值是一个Bean</li>
+</ul>
+<h4 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h4><p>AOP：面向切面编程，相对于OOP面向对象编程。</p>
+<p>Spring的AOP存在的目的在于解耦，AOP可以让一组类共享相同的行为。在OOP中之只能通过集成类和实现接口，来使代码的耦合度增强，且类继承之恩给你为单继承，阻碍更多行为添加到一组类上。</p>
+<p>Spring支持注解式面向切面编程</p>
+<ul>
+<li>使用@Aspect声明是一个切面</li>
+<li>使用@After、@Before、@Around定义建言(advice)，可以直接将拦截规则(切点)作为参数</li>
+<li>其中@After、@Before、@Around参数的拦截规则为切点(PointCut)，为了使切点复用，可使用@PointCut撰文定义拦截规则,然后在@After、@Before、@Around的参数中调用</li>
+<li>其中符合条件的每一个被拦截处为连接点(JoinPoint)</li>
+</ul>
+<h3 id="Spring常用配置"><a href="#Spring常用配置" class="headerlink" title="Spring常用配置"></a>Spring常用配置</h3><h4 id="Bean的Scope"><a href="#Bean的Scope" class="headerlink" title="Bean的Scope"></a>Bean的Scope</h4><p>Scope是范围的意思,描述的是Spring容器如何新建Bean的实例的。Spring的Scope有以下几种，通过@Scope注解实现。</p>
+<ul>
+<li>Singleton：一个Spring容器只有一个Bean的实例，是Spring的默认配置，全容器共享一个实例。</li>
+<li>Prototype：每次调用新建一个Bean的实例。</li>
+<li>Request：Web项目中，给每一http request新建一个Bean实例</li>
+<li>Session：Web项目中，给每一个http session新建一个Bean实例</li>
+<li>GlobalSession：这个只在portal应用中有用，给每一个global http session新建一个Bean实例</li>
+</ul>
+<h4 id="Profile"><a href="#Profile" class="headerlink" title="Profile"></a>Profile</h4><p>Profile为不同环境下使用不同的配置提供了支持(开发环境下的配置和生成环境下的配置肯定是不同的，例如数据库的配置。</p>
+<h4 id="事件-Application-Event"><a href="#事件-Application-Event" class="headerlink" title="事件(Application Event)"></a>事件(Application Event)</h4><p>Spring的事件(Application Event)为Bean与Bean之间的消息通信提供了支持。当一个Bean处理完了一个任务之后，希望另外一个Bean知道并能做相应的处理，这时我们就需要让另外一个Bean监听当前Bean所发送的事件。</p>
+<p>Spring的事件遵循如下流程：</p>
+<ol>
+<li>自定义事件，继承ApplicationEvent</li>
+<li>定义事件监听器，实现ApplicationListener</li>
+<li>使用容器发布事件</li>
+</ol>
+<h3 id="Spring高级话题"><a href="#Spring高级话题" class="headerlink" title="Spring高级话题"></a>Spring高级话题</h3><h4 id="Spring-Aware"><a href="#Spring-Aware" class="headerlink" title="Spring Aware"></a>Spring Aware</h4><p>Spring Aware的目的是为了让Bean获得Spring容器的服务。</p>
+<h3 id="第4章-Spring-MVC基础"><a href="#第4章-Spring-MVC基础" class="headerlink" title="第4章 Spring MVC基础"></a>第4章 Spring MVC基础</h3><h4 id="Spring-MVC常用注解"><a href="#Spring-MVC常用注解" class="headerlink" title="Spring MVC常用注解"></a>Spring MVC常用注解</h4><ul>
+<li>@RestController：是一个组合注解，组合了@Controller和@ResponseBody</li>
+</ul>
+<h4 id="Spring-MVC基本配置"><a href="#Spring-MVC基本配置" class="headerlink" title="Spring MVC基本配置"></a>Spring MVC基本配置</h4><p>拦截器(Interceptor)实现对每一个请求处理前后进行相关的业务处理，类似于Servlet的Filter。</p>
+<p>通过@ControllerAdvice可以将控制的全局配置放在同一配置，注解了@Controller的类的方法可使用@ExceptionHandler、@InitBinder、@ModelAttribute注解到方法上，这对所有注解了@RequestMapping的控制器内的方法有效。</p>
+<ul>
+<li>@ExceptionHandler：用于全局处理控制器里的异常</li>
+<li>@InitBinder：用来设置WebDataBinder，WebDataBinder用来自动绑定前台请求到Model中。</li>
+<li>@ModelAttribute：本来的作用是绑定键值对到Model里，此处的让全局的@RequestMapping都能获取此处设置的键值对。</li>
+</ul>
+<h3 id="Spring-Boot基础"><a href="#Spring-Boot基础" class="headerlink" title="Spring Boot基础"></a>Spring Boot基础</h3><p>Spring Boot的优点：</p>
+<ul>
+<li>快速构建项目</li>
+<li>对主流开发框架的无配置集成</li>
+<li>项目可独立运行，无须外部依赖Servlet容器</li>
+<li>提供运行时的应用监控</li>
+<li>极大地提高了开发、部署效率</li>
+<li>与云计算天然集成</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Tars wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag">#Spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/06/SingleNumber系列问题/" rel="next" title="SingleNumber系列问题">
+                <i class="fa fa-chevron-left"></i> SingleNumber系列问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/18/读书记录/" rel="prev" title="读书记录">
+                读书记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/11/SpringBoot实战读书笔记/"
+           data-title="《Spring Boot实战》读书笔记" data-url="http://yoursite.com/2017/03/11/SpringBoot实战读书笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tars.png"
+               alt="Tars" />
+          <p class="site-author-name" itemprop="name">Tars</p>
+          <p class="site-description motion-element" itemprop="description">Make life simple</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tarscode" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2171892561" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/liu-yang-heuer" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/16e3390681e6" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring基础"><span class="nav-number">1.</span> <span class="nav-text">Spring基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IOC"><span class="nav-number">1.1.</span> <span class="nav-text">IOC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOP"><span class="nav-number">1.2.</span> <span class="nav-text">AOP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring常用配置"><span class="nav-number">2.</span> <span class="nav-text">Spring常用配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean的Scope"><span class="nav-number">2.1.</span> <span class="nav-text">Bean的Scope</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Profile"><span class="nav-number">2.2.</span> <span class="nav-text">Profile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件-Application-Event"><span class="nav-number">2.3.</span> <span class="nav-text">事件(Application Event)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring高级话题"><span class="nav-number">3.</span> <span class="nav-text">Spring高级话题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Aware"><span class="nav-number">3.1.</span> <span class="nav-text">Spring Aware</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4章-Spring-MVC基础"><span class="nav-number">4.</span> <span class="nav-text">第4章 Spring MVC基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-MVC常用注解"><span class="nav-number">4.1.</span> <span class="nav-text">Spring MVC常用注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-MVC基本配置"><span class="nav-number">4.2.</span> <span class="nav-text">Spring MVC基本配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot基础"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot基础</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tars</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tarscode"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
